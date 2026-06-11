@@ -484,9 +484,8 @@
 </header>
 
 <div class="tabs">
-  <div class="tab active" onclick="switchTab('leaderboard')">🏆&nbsp; Leaderboard</div>
+  <div class="tab active" onclick="switchTab('leaderboard')">🏆&nbsp; Standings</div>
   <div class="tab" onclick="switchTab('results')">⚽&nbsp; Team Results</div>
-  <div class="tab" onclick="switchTab('participants')">👥&nbsp; Rosters</div>
 </div>
 
 <main>
@@ -536,6 +535,13 @@
         </tbody>
       </table>
     </div>
+
+    <div class="section-title" style="margin-top:32px">
+      Rosters <span class="badge" id="roster-count">0 players</span>
+    </div>
+    <div class="participants-grid" id="participants-grid">
+      <div class="empty-state" style="grid-column:1/-1"><div class="icon">👥</div><h3>No participants yet</h3></div>
+    </div>
   </div>
 
   <!-- RESULTS -->
@@ -547,15 +553,6 @@
     <div class="results-grid" id="results-grid"></div>
   </div>
 
-  <!-- PARTICIPANTS -->
-  <div id="panel-participants" class="panel">
-    <div class="section-title">
-      Rosters <span class="badge" id="roster-count">0 players</span>
-    </div>
-    <div class="participants-grid" id="participants-grid">
-      <div class="empty-state" style="grid-column:1/-1"><div class="icon">👥</div><h3>No participants yet</h3><p>Add players using the button above.</p></div>
-    </div>
-  </div>
 </main>
 
 <!-- ADD PARTICIPANT MODAL -->
@@ -1075,7 +1072,7 @@ function saveParticipant() {
 
 function switchTab(name) {
   document.querySelectorAll('.tab').forEach((t, i) => {
-    t.classList.toggle('active', ['leaderboard','results','participants'][i] === name);
+    t.classList.toggle('active', ['leaderboard','results'][i] === name);
   });
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
