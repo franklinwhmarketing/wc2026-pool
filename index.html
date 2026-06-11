@@ -222,6 +222,11 @@
   .rank-other { color: var(--muted2); font-size: 14px; }
 
   .player-name { font-weight: 700; font-size: 15px; }
+  .tied-tag {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 4px; vertical-align: middle; cursor: default;
+    background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber-border);
+  }
   .team-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
   .team-chip {
     font-size: 10px;
@@ -525,14 +530,11 @@
             <th style="width:50px">#</th>
             <th>Player</th>
             <th style="text-align:right">Points</th>
-            <th style="text-align:right">TB1 — Goals</th>
-            <th style="text-align:right">TB2 — WC Winner</th>
-            <th style="text-align:right">TB3 — Red Cards</th>
             <th style="width:70px"></th>
           </tr>
         </thead>
         <tbody id="leaderboard-body">
-          <tr><td colspan="7"><div class="empty-state"><div class="icon">🏆</div><h3>No participants yet</h3><p>Click "+ Add Participant" to enter your first ballot.</p></div></td></tr>
+          <tr><td colspan="4"><div class="empty-state"><div class="icon">🏆</div><h3>No participants yet</h3><p>Click "+ Add Participant" to enter your first ballot.</p></div></td></tr>
         </tbody>
       </table>
     </div>
@@ -829,27 +831,18 @@ function renderLeaderboard() {
     const rankClass = rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : rank === 3 ? 'rank-3' : 'rank-other';
     const rankLabel = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
 
-    const chips = p.teams.map(code => {
-      const t = teamByCode(code);
-      const hasPts = teamPoints(code) > 0;
-      return `<span class="team-chip ${hasPts ? 'has-points' : ''}" title="${t ? t.name : code} — ${teamPoints(code)} pts">${t ? t.flag : ''} ${code}</span>`;
-    }).join('');
-
-    const wcWinner = p.tbWinner ? (teamByCode(p.tbWinner) || { flag: '', name: p.tbWinner }) : null;
+    // Flag scores shared with a neighbor — tiebreakers (on Rosters tab) decide those
+    const tied = pts > 0 && sorted.some((o, j) => j !== i && participantPoints(o) === pts);
 
     return `<tr>
       <td><div class="rank-num ${rankClass}">${rankLabel}</div></td>
       <td>
-        <div class="player-name">${p.name}</div>
-        <div class="team-chips">${chips}</div>
+        <div class="player-name">${p.name}${tied ? ' <span class="tied-tag" title="Tied on points — tiebreakers on the Rosters tab decide">tied</span>' : ''}</div>
       </td>
       <td style="text-align:right">
         <div class="points-big">${pts}</div>
         <div class="points-detail">${totalWins(p)}W · ${totalDraws(p)}D</div>
       </td>
-      <td class="tiebreak-val" style="text-align:right">${p.tbGoals || '—'}</td>
-      <td class="tiebreak-val" style="text-align:right">${wcWinner ? wcWinner.flag + ' ' + wcWinner.name : '—'}</td>
-      <td class="tiebreak-val" style="text-align:right">${p.tbRedCards || '—'}</td>
       <td><button class="btn btn-danger btn-sm" onclick="deleteParticipant('${p.id}')">✕</button></td>
     </tr>`;
   }).join('');
