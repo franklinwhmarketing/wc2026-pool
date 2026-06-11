@@ -97,6 +97,8 @@ def main():
 
     results = {}  # code → {wins, draws}
     total_matches = 0
+    total_goals = 0
+    total_red_cards = 0
     match_log = []
 
     d = TOURNAMENT_START
@@ -154,6 +156,16 @@ def main():
                     results[b['code']]['wins'] += 1
                 log_entry += f" [WIN: {b['name']}]"
 
+            # Goals
+            total_goals += a['score'] + b['score']
+
+            # Red cards from competition details
+            for detail in competition.get('details', []):
+                d_type = detail.get('type', {})
+                type_text = (d_type.get('text') or d_type.get('description') or '').lower()
+                if 'red' in type_text:
+                    total_red_cards += 1
+
             match_log.append(log_entry)
             total_matches += 1
 
@@ -169,6 +181,8 @@ def main():
         'results': results,
         'updated': today.isoformat(),
         'matches_processed': total_matches,
+        'total_goals': total_goals,
+        'total_red_cards': total_red_cards,
     }
     out_path = 'results.json'
     with open(out_path, 'w') as f:

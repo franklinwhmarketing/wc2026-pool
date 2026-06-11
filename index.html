@@ -555,6 +555,18 @@
       Live Results <span class="badge" id="results-badge">auto-synced from ESPN</span>
     </div>
     <p style="font-size:13px; color:var(--muted); margin-bottom:20px;">Win = 3 pts &nbsp;·&nbsp; Draw = 1 pt (group stage only) &nbsp;·&nbsp; Results pulled automatically from ESPN.</p>
+    <div class="stats-row" style="margin-bottom:24px">
+      <div class="stat-card">
+        <div class="label">Total Goals Scored</div>
+        <div class="value amber" id="stat-total-goals">—</div>
+        <div class="sub">TB1 tiebreaker</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Total Red Cards</div>
+        <div class="value amber" id="stat-total-reds">—</div>
+        <div class="sub">TB3 tiebreaker</div>
+      </div>
+    </div>
     <div class="results-grid" id="results-grid"></div>
   </div>
 
@@ -895,6 +907,8 @@ async function syncResults() {
     statusEl.textContent = `Updated ${updated} · ${count} matches`;
     statusEl.className = 'sync-status';
     document.getElementById('results-badge').textContent = `${count} matches · last sync ${updated}`;
+    document.getElementById('stat-total-goals').textContent = data.total_goals ?? '—';
+    document.getElementById('stat-total-reds').textContent = data.total_red_cards ?? '—';
     render();
   } catch(e) {
     statusEl.textContent = 'Run fetch_results.py to sync';
