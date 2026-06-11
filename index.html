@@ -908,7 +908,7 @@ function renderParticipants() {
     grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="icon">👥</div><h3>No participants yet</h3><p>Add players using the button above.</p></div>';
     return;
   }
-  const sorted = getSortedParticipants();
+  const sorted = [...state.participants].sort((a, b) => a.name.localeCompare(b.name));
   grid.innerHTML = sorted.map(p => {
     const pts = participantPoints(p);
     const spent = p.teams.reduce((s, c) => s + ((teamByCode(c) || {}).cost || 0), 0);
