@@ -159,11 +159,9 @@ def main():
             # Goals
             total_goals += a['score'] + b['score']
 
-            # Red cards from competition details
+            # Red cards from competition details (ESPN sets an explicit flag)
             for detail in competition.get('details', []):
-                d_type = detail.get('type', {})
-                type_text = (d_type.get('text') or d_type.get('description') or '').lower()
-                if 'red' in type_text:
+                if detail.get('redCard') is True:
                     total_red_cards += 1
 
             match_log.append(log_entry)
