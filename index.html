@@ -486,6 +486,7 @@
 <div class="tabs">
   <div class="tab active" onclick="switchTab('leaderboard')">🏆&nbsp; Standings</div>
   <div class="tab" onclick="switchTab('results')">⚽&nbsp; Team Results</div>
+  <div class="tab" onclick="switchTab('participants')">👥&nbsp; Rosters</div>
 </div>
 
 <main>
@@ -536,7 +537,11 @@
       </table>
     </div>
 
-    <div class="section-title" style="margin-top:32px">
+  </div>
+
+  <!-- PARTICIPANTS -->
+  <div id="panel-participants" class="panel">
+    <div class="section-title">
       Rosters <span class="badge" id="roster-count">0 players</span>
     </div>
     <div class="participants-grid" id="participants-grid">
@@ -1073,7 +1078,7 @@ function saveParticipant() {
 
 function switchTab(name) {
   document.querySelectorAll('.tab').forEach((t, i) => {
-    t.classList.toggle('active', ['leaderboard','results'][i] === name);
+    t.classList.toggle('active', ['leaderboard','results','participants'][i] === name);
   });
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
