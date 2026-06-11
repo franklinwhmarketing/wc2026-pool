@@ -1,5 +1,14 @@
 {
-  "results": {},
+  "results": {
+    "MEX": {
+      "wins": 1,
+      "draws": 0
+    },
+    "RSA": {
+      "wins": 0,
+      "draws": 0
+    }
+  },
   "updated": "2026-06-11",
-  "matches_processed": 0
+  "matches_processed": 1
 }
