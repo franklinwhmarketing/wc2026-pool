@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+"""
+FranklinWH World Cup 2026 Pool — Results Scraper
+Fetches completed match results from ESPN's public API and writes results.json.
+Run daily: python3 fetch_results.py
+"""
+
+import requests
+import json
+import sys
+from datetime import date, timedelta
+
+# ESPN team abbreviation → pool code
+ABBR_MAP = {
+    'ARG': 'ARG', 'BRA': 'BRA', 'ENG': 'ENG', 'FRA': 'FRA', 'ESP': 'ESP',
+    'BEL': 'BEL', 'GER': 'GER', 'NED': 'NED', 'NOR': 'NOR', 'POR': 'POR',
+    'COL': 'COL', 'CRO': 'CRO', 'JPN': 'JPN', 'MEX': 'MEX', 'MAR': 'MAR',
+    'SUI': 'SUI', 'URU': 'URU', 'USA': 'USA',
+    'AUT': 'AUT', 'BIH': 'BIH', 'CAN': 'CAN', 'CZE': 'CZE', 'ECU': 'ECU',
+    'EGY': 'EGY', 'CIV': 'CIV', 'IVC': 'CIV', 'PAR': 'PAR', 'SCO': 'SCO',
+    'SEN': 'SEN', 'SWE': 'SWE', 'TUR': 'TUR',
+    'ALG': 'ALG', 'AUS': 'AUS', 'CPV': 'CPV', 'CV':  'CPV',
+    'CUW': 'CUW', 'CUR': 'CUW',
+    'COD': 'COD', 'DRC': 'COD', 'RDC': 'COD',
+    'GHA': 'GHA', 'HAI': 'HAI',
+    'IRN': 'IRN', 'IRI': 'IRN', 'IRQ': 'IRQ',
+    'JOR': 'JOR', 'NZL': 'NZL', 'PAN': 'PAN', 'QAT': 'QAT',
+    'KSA': 'KSA', 'SAU': 'KSA',
+    'RSA': 'RSA', 'SAF': 'RSA',
+    'KOR': 'KOR', 'SKO': 'KOR',
+    'TUN': 'TUN', 'UZB': 'UZB',
+}
+
+# ESPN team display name → pool code (fallback if abbreviation doesn't match)
+NAME_MAP = {
+    'argentina': 'ARG', 'brazil': 'BRA', 'england': 'ENG',
+    'france': 'FRA', 'spain': 'ESP', 'belgium': 'BEL',
+    'germany': 'GER', 'netherlands': 'NED', 'norway': 'NOR',
+    'portugal': 'POR', 'colombia': 'COL', 'croatia': 'CRO',
+    'japan': 'JPN', 'mexico': 'MEX', 'morocco': 'MAR',
+    'switzerland': 'SUI', 'uruguay': 'URU',
+    'united states': 'USA', 'usa': 'USA', 'us': 'USA',
+    'austria': 'AUT', 'bosnia and herzegovina': 'BIH',
+    'bosnia & herzegovina': 'BIH', 'canada': 'CAN',
+    'czech republic': 'CZE', 'czechia': 'CZE', 'ecuador': 'ECU',
+    'egypt': 'EGY', "ivory coast": 'CIV', "côte d'ivoire": 'CIV',
+    "cote d'ivoire": 'CIV', 'paraguay': 'PAR', 'scotland': 'SCO',
+    'senegal': 'SEN', 'sweden': 'SWE', 'turkiye': 'TUR', 'turkey': 'TUR',
+    'algeria': 'ALG', 'australia': 'AUS', 'cape verde': 'CPV',
+    'curaçao': 'CUW', 'curacao': 'CUW',
+    'dr congo': 'COD', 'congo dr': 'COD', 'democratic republic of congo': 'COD',
+    'ghana': 'GHA', 'haiti': 'HAI', 'iran': 'IRN', 'iraq': 'IRQ',
+    'jordan': 'JOR', 'new zealand': 'NZL', 'panama': 'PAN',
+    'qatar': 'QAT', 'saudi arabia': 'KSA', 'south africa': 'RSA',
+    'south korea': 'KOR', 'korea republic': 'KOR', 'republic of korea': 'KOR',
+    'tunisia': 'TUN', 'uzbekistan': 'UZB',
+}
+
+# Group stage ends June 26; knockouts begin June 29
+KNOCKOUT_START = date(2026, 6, 29)
+TOURNAMENT_START = date(2026, 6, 11)
+TOURNAMENT_END = date(2026, 7, 19)
+
+
+def resolve_team(abbr, name):
+    code = ABBR_MAP.get(abbr.upper())
+    if code:
+        return code
+    code = NAME_MAP.get(name.lower())
+    if code:
+        return code
+    # Partial name match
+    name_lower = name.lower()
+    for k, v in NAME_MAP.items():
+        if k in name_lower or name_lower in k:
+            return v
+    return None
+
+
+def fetch_day(d):
+    date_str = d.strftime('%Y%m%d')
+    url = f'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates={date_str}'
+    try:
+        r = requests.get(url, timeout=8, headers={'User-Agent': 'Mozilla/5.0'})
+        r.raise_for_status()
+        return r.json().get('events', [])
+    except Exception as e:
+        print(f'  Warning: could not fetch {date_str} — {e}', file=sys.stderr)
+        return []
+
+
+def main():
+    today = min(date.today(), TOURNAMENT_END)
+    if today < TOURNAMENT_START:
+        print('Tournament has not started yet.')
+        return
+
+    results = {}  # code → {wins, draws}
+    total_matches = 0
+    match_log = []
+
+    d = TOURNAMENT_START
+    while d <= today:
+        events = fetch_day(d)
+        is_knockout = d >= KNOCKOUT_START
+
+        for event in events:
+            competition = (event.get('competitions') or [{}])[0]
+            status = competition.get('status', {}).get('type', {})
+
+            # Only process completed matches
+            if not status.get('completed', False):
+                continue
+
+            competitors = competition.get('competitors', [])
+            if len(competitors) != 2:
+                continue
+
+            parsed = []
+            for c in competitors:
+                team = c.get('team', {})
+                abbr = team.get('abbreviation', '')
+                name = team.get('displayName', team.get('shortDisplayName', ''))
+                try:
+                    score = int(c.get('score', '0'))
+                except (ValueError, TypeError):
+                    score = 0
+                winner = c.get('winner', False)
+                code = resolve_team(abbr, name)
+                parsed.append({'code': code, 'abbr': abbr, 'name': name, 'score': score, 'winner': winner})
+
+            a, b = parsed[0], parsed[1]
+
+            # Ensure both teams exist in results
+            for p in [a, b]:
+                if p['code'] and p['code'] not in results:
+                    results[p['code']] = {'wins': 0, 'draws': 0}
+
+            log_entry = f"{d} | {a['name']} {a['score']}–{b['score']} {b['name']}"
+
+            if a['score'] == b['score'] and not is_knockout:
+                # Group stage draw
+                if a['code']:
+                    results[a['code']]['draws'] += 1
+                if b['code']:
+                    results[b['code']]['draws'] += 1
+                log_entry += ' [DRAW]'
+            elif a['score'] > b['score'] or (a['score'] == b['score'] and a.get('winner')):
+                if a['code']:
+                    results[a['code']]['wins'] += 1
+                log_entry += f" [WIN: {a['name']}]"
+            elif b['score'] > a['score'] or (a['score'] == b['score'] and b.get('winner')):
+                if b['code']:
+                    results[b['code']]['wins'] += 1
+                log_entry += f" [WIN: {b['name']}]"
+
+            match_log.append(log_entry)
+            total_matches += 1
+
+        d += timedelta(days=1)
+
+    # Print match log
+    print(f'\nProcessed {total_matches} completed matches:\n')
+    for entry in match_log:
+        print(' ', entry)
+
+    # Write results.json
+    output = {
+        'results': results,
+        'updated': today.isoformat(),
+        'matches_processed': total_matches,
+    }
+    out_path = 'results.json'
+    with open(out_path, 'w') as f:
+        json.dump(output, f, indent=2)
+
+    print(f'\nWrote {out_path} with {len(results)} teams.')
+
+
+if __name__ == '__main__':
+    main()
