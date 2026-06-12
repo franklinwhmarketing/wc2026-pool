@@ -530,7 +530,6 @@
             <th style="width:50px">#</th>
             <th>Player</th>
             <th style="text-align:right">Points</th>
-            <th style="width:70px"></th>
           </tr>
         </thead>
         <tbody id="leaderboard-body">
@@ -821,7 +820,7 @@ function renderLeaderboard() {
   const sorted = getSortedParticipants();
   const tbody = document.getElementById('leaderboard-body');
   if (sorted.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="icon">🏆</div><h3>No participants yet</h3><p>Click "+ Add Participant" to enter the first ballot.</p></div></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="3"><div class="empty-state"><div class="icon">🏆</div><h3>No participants yet</h3><p>Click "+ Add Participant" to enter the first ballot.</p></div></td></tr>';
     return;
   }
 
@@ -843,7 +842,6 @@ function renderLeaderboard() {
         <div class="points-big">${pts}</div>
         <div class="points-detail">${totalWins(p)}W · ${totalDraws(p)}D</div>
       </td>
-      <td><button class="btn btn-danger btn-sm" onclick="deleteParticipant('${p.id}')">✕</button></td>
     </tr>`;
   }).join('');
 }
