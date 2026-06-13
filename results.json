@@ -31,10 +31,18 @@
     "PAR": {
       "wins": 0,
       "draws": 0
+    },
+    "QAT": {
+      "wins": 0,
+      "draws": 1
+    },
+    "SUI": {
+      "wins": 0,
+      "draws": 1
     }
   },
   "updated": "2026-06-13",
-  "matches_processed": 4,
-  "total_goals": 12,
+  "matches_processed": 5,
+  "total_goals": 14,
   "total_red_cards": 3
 }
