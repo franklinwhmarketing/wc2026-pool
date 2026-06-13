@@ -23,10 +23,18 @@
     "BIH": {
       "wins": 0,
       "draws": 1
+    },
+    "USA": {
+      "wins": 1,
+      "draws": 0
+    },
+    "PAR": {
+      "wins": 0,
+      "draws": 0
     }
   },
   "updated": "2026-06-12",
-  "matches_processed": 3,
-  "total_goals": 7,
+  "matches_processed": 4,
+  "total_goals": 12,
   "total_red_cards": 3
 }
