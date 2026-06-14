@@ -55,10 +55,18 @@
     "SCO": {
       "wins": 1,
       "draws": 0
+    },
+    "AUS": {
+      "wins": 1,
+      "draws": 0
+    },
+    "TUR": {
+      "wins": 0,
+      "draws": 0
     }
   },
   "updated": "2026-06-14",
-  "matches_processed": 7,
-  "total_goals": 17,
+  "matches_processed": 8,
+  "total_goals": 19,
   "total_red_cards": 3
 }
