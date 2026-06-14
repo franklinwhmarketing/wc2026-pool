@@ -63,10 +63,18 @@
     "TUR": {
       "wins": 0,
       "draws": 0
+    },
+    "GER": {
+      "wins": 1,
+      "draws": 0
+    },
+    "CUW": {
+      "wins": 0,
+      "draws": 0
     }
   },
   "updated": "2026-06-14",
-  "matches_processed": 8,
-  "total_goals": 19,
+  "matches_processed": 9,
+  "total_goals": 27,
   "total_red_cards": 3
 }
