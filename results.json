@@ -39,10 +39,26 @@
     "SUI": {
       "wins": 0,
       "draws": 1
+    },
+    "BRA": {
+      "wins": 0,
+      "draws": 1
+    },
+    "MAR": {
+      "wins": 0,
+      "draws": 1
+    },
+    "HAI": {
+      "wins": 0,
+      "draws": 0
+    },
+    "SCO": {
+      "wins": 1,
+      "draws": 0
     }
   },
   "updated": "2026-06-13",
-  "matches_processed": 5,
-  "total_goals": 14,
+  "matches_processed": 7,
+  "total_goals": 17,
   "total_red_cards": 3
 }
