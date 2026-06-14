@@ -71,10 +71,18 @@
     "CUW": {
       "wins": 0,
       "draws": 0
+    },
+    "NED": {
+      "wins": 0,
+      "draws": 1
+    },
+    "JPN": {
+      "wins": 0,
+      "draws": 1
     }
   },
   "updated": "2026-06-14",
-  "matches_processed": 9,
-  "total_goals": 27,
+  "matches_processed": 10,
+  "total_goals": 31,
   "total_red_cards": 3
 }
