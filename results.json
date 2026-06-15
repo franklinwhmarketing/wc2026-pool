@@ -95,10 +95,18 @@
     "TUN": {
       "wins": 0,
       "draws": 0
+    },
+    "ESP": {
+      "wins": 0,
+      "draws": 1
+    },
+    "CPV": {
+      "wins": 0,
+      "draws": 1
     }
   },
   "updated": "2026-06-15",
-  "matches_processed": 12,
+  "matches_processed": 13,
   "total_goals": 38,
   "total_red_cards": 3
 }
