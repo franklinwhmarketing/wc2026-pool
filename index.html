@@ -470,23 +470,24 @@
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-  /* CLICKABLE NAMES */
+  /* CLICKABLE NAMES & ACCORDION */
+  .lb-row { cursor: pointer; }
+  .lb-row:hover td { background: rgba(211,138,61,0.04) !important; }
   .clickable-name {
-    cursor: pointer;
-    transition: color 0.15s;
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    transition: color 0.15s;
   }
-  .clickable-name:hover { color: var(--amber); }
   .clickable-name::after {
-    content: '›';
-    font-size: 14px;
+    content: '▾';
+    font-size: 11px;
     color: var(--muted2);
-    transition: color 0.15s, transform 0.15s;
-    line-height: 1;
+    transition: color 0.15s, transform 0.2s;
+    display: inline-block;
   }
-  .clickable-name:hover::after { color: var(--amber); transform: translateX(2px); }
+  .clickable-name.open { color: var(--amber); }
+  .clickable-name.open::after { color: var(--amber); transform: rotate(180deg); }
   .roster-hint {
     font-size: 11px;
     color: var(--muted2);
@@ -495,58 +496,32 @@
     letter-spacing: 0.02em;
   }
 
-  /* ROSTER DETAIL MODAL */
-  .roster-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 300;
-    align-items: center;
-    justify-content: center;
+  /* ACCORDION DETAIL ROW */
+  .roster-detail-row td { padding: 0; }
+  .roster-detail-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 16px;
+    background: rgba(255,255,255,0.012);
+    border-top: 1px solid transparent;
+    transition: max-height 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
   }
-  .roster-overlay.open { display: flex; }
-  .roster-sheet {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    width: 480px;
-    max-width: 95vw;
-    max-height: 88vh;
-    overflow-y: auto;
-    padding: 24px;
+  .roster-detail-row.open .roster-detail-inner {
+    max-height: 800px;
+    padding: 16px;
+    border-top-color: var(--border);
   }
-  .roster-sheet-header {
+  .roster-expand-header {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 18px;
-  }
-  .roster-sheet-name { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .roster-sheet-meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .roster-sheet-pts { text-align: right; }
-  .roster-sheet-pts .big { font-size: 28px; font-weight: 800; color: var(--amber); line-height: 1; }
-  .roster-sheet-pts .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
-  .roster-sheet-rank { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .roster-close {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    background: var(--card2);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1;
-    transition: all 0.15s;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
   }
-  .roster-close:hover { color: var(--text); border-color: var(--muted); }
+  .roster-expand-meta { font-size: 11px; color: var(--muted); }
+  .roster-expand-pts { font-size: 13px; font-weight: 700; color: var(--amber); }
 
   @media (max-width: 768px) {
     header { padding: 0 16px; }
@@ -554,18 +529,8 @@
     .tabs { padding: 0 16px; overflow-x: auto; }
     .stats-row { grid-template-columns: repeat(2, 1fr); }
     .header-divider, .header-title small { display: none; }
-
-    /* Bottom sheet on mobile */
-    .roster-overlay { align-items: flex-end; }
-    .roster-sheet {
-      width: 100%;
-      max-width: 100%;
-      border-radius: 20px 20px 0 0;
-      max-height: 85vh;
-      padding: 20px 16px 32px;
-    }
-    .roster-sheet-name { font-size: 17px; }
-    .roster-sheet-pts .big { font-size: 24px; }
+    .roster-detail-inner { padding: 0 12px; }
+    .roster-detail-row.open .roster-detail-inner { padding: 14px 12px; }
   }
 </style>
 </head>
@@ -662,28 +627,6 @@
   </div>
 
 </main>
-
-<!-- ROSTER DETAIL SHEET -->
-<div class="roster-overlay" id="roster-overlay" onclick="handleRosterOverlayClick(event)">
-  <div class="roster-sheet" id="roster-sheet">
-    <div style="position:relative">
-      <button class="roster-close" onclick="closeRoster()">✕</button>
-      <div class="roster-sheet-header">
-        <div>
-          <div class="roster-sheet-name" id="rs-name"></div>
-          <div class="roster-sheet-meta" id="rs-meta"></div>
-        </div>
-        <div class="roster-sheet-pts">
-          <div class="big" id="rs-pts"></div>
-          <div class="lbl">points</div>
-          <div class="roster-sheet-rank" id="rs-rank"></div>
-        </div>
-      </div>
-      <div class="participant-teams" id="rs-teams"></div>
-      <div class="tiebreakers-row" id="rs-tiebreakers"></div>
-    </div>
-  </div>
-</div>
 
 <!-- ADD PARTICIPANT MODAL -->
 <div class="modal-overlay" id="modal-overlay">
@@ -944,14 +887,43 @@ function renderLeaderboard() {
     // Flag scores shared with a neighbor — tiebreakers (on Rosters tab) decide those
     const tied = pts > 0 && sorted.some((o, j) => j !== i && participantPoints(o) === pts);
 
-    return `<tr>
+    const spent = p.teams.reduce((s, c) => s + ((teamByCode(c) || {}).cost || 0), 0);
+    const wcWinner = p.tbWinner ? (teamByCode(p.tbWinner) || { flag: '', name: p.tbWinner }) : null;
+    const teamRows = p.teams.map(code => {
+      const t = teamByCode(code);
+      const tpts = teamPoints(code);
+      return `<div class="participant-team-row">
+        <div class="participant-team-flag">${t ? t.flag : '?'}</div>
+        <div class="participant-team-name">${t ? t.name : code}</div>
+        <div class="participant-team-cost">${t ? t.cost + ' pts' : ''}</div>
+        <div class="participant-team-pts ${tpts === 0 ? 'zero' : ''}">${tpts > 0 ? '+' + tpts : '—'}</div>
+      </div>`;
+    }).join('');
+
+    return `<tr class="lb-row" onclick="toggleRoster(${p.id})">
       <td><div class="rank-num ${rankClass}">${rankLabel}</div></td>
       <td>
-        <div class="player-name clickable-name" onclick="showRoster(${p.id})">${p.name}${tied ? ' <span class="tied-tag" title="Tied on points — tiebreakers decide">tied</span>' : ''}</div>
+        <div class="player-name clickable-name" id="cname-${p.id}">${p.name}${tied ? ' <span class="tied-tag" title="Tied on points — tiebreakers decide">tied</span>' : ''}</div>
       </td>
       <td style="text-align:right">
         <div class="points-big">${pts}</div>
         <div class="points-detail">${totalWins(p)}W · ${totalDraws(p)}D</div>
+      </td>
+    </tr>
+    <tr class="roster-detail-row" id="detail-${p.id}">
+      <td colspan="3">
+        <div class="roster-detail-inner">
+          <div class="roster-expand-header">
+            <span class="roster-expand-meta">${p.teams.length} teams &nbsp;·&nbsp; ${spent}/100 pts &nbsp;·&nbsp; <span class="paid-badge ${p.paid || 'venmo'}">${p.paid === 'cash' ? 'Cash ✓' : 'Venmo'}</span></span>
+            <span class="roster-expand-pts">${pts} pts</span>
+          </div>
+          <div class="participant-teams">${teamRows}</div>
+          <div class="tiebreakers-row">
+            <span>TB1: ${p.tbGoals || '?'} goals</span>
+            <span>TB2: ${wcWinner ? wcWinner.flag + ' ' + wcWinner.name : '?'}</span>
+            <span>TB3: ${p.tbRedCards || '?'} cards</span>
+          </div>
+        </div>
       </td>
     </tr>`;
   }).join('');
@@ -1200,48 +1172,13 @@ function switchTab(name) {
   document.getElementById('panel-' + name).classList.add('active');
 }
 
-function showRoster(id) {
-  const p = state.participants.find(x => x.id === id);
-  if (!p) return;
-
-  const sorted = getSortedParticipants();
-  const rank = sorted.findIndex(x => x.id === id) + 1;
-  const pts = participantPoints(p);
-  const spent = p.teams.reduce((s, c) => s + ((teamByCode(c) || {}).cost || 0), 0);
-  const wcWinner = p.tbWinner ? (teamByCode(p.tbWinner) || { flag: '', name: p.tbWinner }) : null;
-  const rankLabel = rank === 1 ? '🥇 1st' : rank === 2 ? '🥈 2nd' : rank === 3 ? '🥉 3rd' : `#${rank}`;
-
-  document.getElementById('rs-name').innerHTML =
-    `${p.name}<span class="paid-badge ${p.paid || 'venmo'}">${p.paid === 'cash' ? 'Cash ✓' : 'Venmo'}</span>`;
-  document.getElementById('rs-meta').textContent = `${p.teams.length} teams · ${spent}/100 pts spent`;
-  document.getElementById('rs-pts').textContent = pts;
-  document.getElementById('rs-rank').textContent = rankLabel;
-
-  document.getElementById('rs-teams').innerHTML = p.teams.map(code => {
-    const t = teamByCode(code);
-    const tpts = teamPoints(code);
-    return `<div class="participant-team-row">
-      <div class="participant-team-flag">${t ? t.flag : '?'}</div>
-      <div class="participant-team-name">${t ? t.name : code}</div>
-      <div class="participant-team-cost">${t ? t.cost + ' pts' : ''}</div>
-      <div class="participant-team-pts ${tpts === 0 ? 'zero' : ''}">${tpts > 0 ? '+' + tpts : '—'}</div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('rs-tiebreakers').innerHTML =
-    `<span>TB1: ${p.tbGoals || '?'} goals</span>
-     <span>TB2: ${wcWinner ? wcWinner.flag + ' ' + wcWinner.name : '?'}</span>
-     <span>TB3: ${p.tbRedCards || '?'} cards</span>`;
-
-  document.getElementById('roster-overlay').classList.add('open');
-}
-
-function closeRoster() {
-  document.getElementById('roster-overlay').classList.remove('open');
-}
-
-function handleRosterOverlayClick(e) {
-  if (e.target === document.getElementById('roster-overlay')) closeRoster();
+function toggleRoster(id) {
+  const detailRow = document.getElementById('detail-' + id);
+  const nameEl = document.getElementById('cname-' + id);
+  if (!detailRow) return;
+  const isOpen = detailRow.classList.contains('open');
+  detailRow.classList.toggle('open', !isOpen);
+  if (nameEl) nameEl.classList.toggle('open', !isOpen);
 }
 
 document.getElementById('modal-overlay').addEventListener('click', function(e) {
