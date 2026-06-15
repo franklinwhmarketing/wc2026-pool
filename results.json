@@ -79,10 +79,26 @@
     "JPN": {
       "wins": 0,
       "draws": 1
+    },
+    "CIV": {
+      "wins": 1,
+      "draws": 0
+    },
+    "ECU": {
+      "wins": 0,
+      "draws": 0
+    },
+    "SWE": {
+      "wins": 1,
+      "draws": 0
+    },
+    "TUN": {
+      "wins": 0,
+      "draws": 0
     }
   },
   "updated": "2026-06-14",
-  "matches_processed": 10,
-  "total_goals": 31,
+  "matches_processed": 12,
+  "total_goals": 38,
   "total_red_cards": 3
 }
