@@ -103,10 +103,18 @@
     "CPV": {
       "wins": 0,
       "draws": 1
+    },
+    "BEL": {
+      "wins": 0,
+      "draws": 1
+    },
+    "EGY": {
+      "wins": 0,
+      "draws": 1
     }
   },
   "updated": "2026-06-15",
-  "matches_processed": 13,
-  "total_goals": 38,
+  "matches_processed": 14,
+  "total_goals": 40,
   "total_red_cards": 3
 }
