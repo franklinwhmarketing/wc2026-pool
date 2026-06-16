@@ -111,10 +111,26 @@
     "EGY": {
       "wins": 0,
       "draws": 1
+    },
+    "KSA": {
+      "wins": 0,
+      "draws": 1
+    },
+    "URU": {
+      "wins": 0,
+      "draws": 1
+    },
+    "IRN": {
+      "wins": 0,
+      "draws": 1
+    },
+    "NZL": {
+      "wins": 0,
+      "draws": 1
     }
   },
-  "updated": "2026-06-15",
-  "matches_processed": 14,
-  "total_goals": 40,
+  "updated": "2026-06-16",
+  "matches_processed": 16,
+  "total_goals": 46,
   "total_red_cards": 3
 }
