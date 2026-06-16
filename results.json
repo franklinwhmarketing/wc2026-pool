@@ -127,10 +127,18 @@
     "NZL": {
       "wins": 0,
       "draws": 1
+    },
+    "FRA": {
+      "wins": 1,
+      "draws": 0
+    },
+    "SEN": {
+      "wins": 0,
+      "draws": 0
     }
   },
   "updated": "2026-06-16",
-  "matches_processed": 16,
-  "total_goals": 46,
+  "matches_processed": 17,
+  "total_goals": 50,
   "total_red_cards": 3
 }
