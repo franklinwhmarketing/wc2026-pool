@@ -159,10 +159,18 @@
     "JOR": {
       "wins": 0,
       "draws": 0
+    },
+    "POR": {
+      "wins": 0,
+      "draws": 1
+    },
+    "COD": {
+      "wins": 0,
+      "draws": 1
     }
   },
   "updated": "2026-06-17",
-  "matches_processed": 20,
-  "total_goals": 62,
+  "matches_processed": 21,
+  "total_goals": 64,
   "total_red_cards": 3
 }
