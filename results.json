@@ -135,10 +135,26 @@
     "SEN": {
       "wins": 0,
       "draws": 0
+    },
+    "IRQ": {
+      "wins": 0,
+      "draws": 0
+    },
+    "NOR": {
+      "wins": 1,
+      "draws": 0
+    },
+    "ARG": {
+      "wins": 1,
+      "draws": 0
+    },
+    "ALG": {
+      "wins": 0,
+      "draws": 0
     }
   },
-  "updated": "2026-06-16",
-  "matches_processed": 17,
-  "total_goals": 50,
+  "updated": "2026-06-17",
+  "matches_processed": 19,
+  "total_goals": 58,
   "total_red_cards": 3
 }
