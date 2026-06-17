@@ -167,10 +167,18 @@
     "COD": {
       "wins": 0,
       "draws": 1
+    },
+    "ENG": {
+      "wins": 1,
+      "draws": 0
+    },
+    "CRO": {
+      "wins": 0,
+      "draws": 0
     }
   },
   "updated": "2026-06-17",
-  "matches_processed": 21,
-  "total_goals": 64,
+  "matches_processed": 22,
+  "total_goals": 70,
   "total_red_cards": 3
 }
