@@ -6,7 +6,7 @@
     },
     "RSA": {
       "wins": 0,
-      "draws": 0
+      "draws": 1
     },
     "KOR": {
       "wins": 1,
@@ -14,7 +14,7 @@
     },
     "CZE": {
       "wins": 0,
-      "draws": 0
+      "draws": 1
     },
     "CAN": {
       "wins": 0,
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-18",
-  "matches_processed": 24,
-  "total_goals": 75,
+  "matches_processed": 25,
+  "total_goals": 77,
   "total_red_cards": 3
 }
