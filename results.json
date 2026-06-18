@@ -175,10 +175,26 @@
     "CRO": {
       "wins": 0,
       "draws": 0
+    },
+    "GHA": {
+      "wins": 1,
+      "draws": 0
+    },
+    "PAN": {
+      "wins": 0,
+      "draws": 0
+    },
+    "UZB": {
+      "wins": 0,
+      "draws": 0
+    },
+    "COL": {
+      "wins": 1,
+      "draws": 0
     }
   },
   "updated": "2026-06-17",
-  "matches_processed": 22,
-  "total_goals": 70,
+  "matches_processed": 24,
+  "total_goals": 75,
   "total_red_cards": 3
 }
