@@ -25,7 +25,7 @@
       "draws": 1
     },
     "USA": {
-      "wins": 1,
+      "wins": 2,
       "draws": 0
     },
     "PAR": {
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-19",
-  "matches_processed": 28,
-  "total_goals": 89,
+  "matches_processed": 29,
+  "total_goals": 91,
   "total_red_cards": 6
 }
