@@ -65,7 +65,7 @@
       "draws": 0
     },
     "GER": {
-      "wins": 1,
+      "wins": 2,
       "draws": 0
     },
     "CUW": {
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-20",
-  "matches_processed": 33,
-  "total_goals": 102,
+  "matches_processed": 34,
+  "total_goals": 105,
   "total_red_cards": 7
 }
