@@ -70,7 +70,7 @@
     },
     "CUW": {
       "wins": 0,
-      "draws": 0
+      "draws": 1
     },
     "NED": {
       "wins": 1,
@@ -86,7 +86,7 @@
     },
     "ECU": {
       "wins": 0,
-      "draws": 0
+      "draws": 1
     },
     "SWE": {
       "wins": 1,
@@ -193,8 +193,8 @@
       "draws": 0
     }
   },
-  "updated": "2026-06-20",
-  "matches_processed": 34,
+  "updated": "2026-06-21",
+  "matches_processed": 35,
   "total_goals": 105,
   "total_red_cards": 7
 }
