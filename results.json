@@ -145,7 +145,7 @@
       "draws": 0
     },
     "ARG": {
-      "wins": 1,
+      "wins": 2,
       "draws": 0
     },
     "ALG": {
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-22",
-  "matches_processed": 40,
-  "total_goals": 121,
+  "matches_processed": 41,
+  "total_goals": 123,
   "total_red_cards": 8
 }
