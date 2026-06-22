@@ -102,14 +102,14 @@
     },
     "CPV": {
       "wins": 0,
-      "draws": 1
+      "draws": 2
     },
     "BEL": {
       "wins": 0,
       "draws": 2
     },
     "EGY": {
-      "wins": 0,
+      "wins": 1,
       "draws": 1
     },
     "KSA": {
@@ -118,7 +118,7 @@
     },
     "URU": {
       "wins": 0,
-      "draws": 1
+      "draws": 2
     },
     "IRN": {
       "wins": 0,
@@ -193,8 +193,8 @@
       "draws": 0
     }
   },
-  "updated": "2026-06-21",
-  "matches_processed": 38,
-  "total_goals": 113,
+  "updated": "2026-06-22",
+  "matches_processed": 40,
+  "total_goals": 121,
   "total_red_cards": 8
 }
