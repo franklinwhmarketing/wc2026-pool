@@ -170,7 +170,7 @@
     },
     "ENG": {
       "wins": 1,
-      "draws": 0
+      "draws": 1
     },
     "CRO": {
       "wins": 0,
@@ -178,7 +178,7 @@
     },
     "GHA": {
       "wins": 1,
-      "draws": 0
+      "draws": 1
     },
     "PAN": {
       "wins": 0,
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-23",
-  "matches_processed": 45,
+  "matches_processed": 46,
   "total_goals": 139,
   "total_red_cards": 8
 }
