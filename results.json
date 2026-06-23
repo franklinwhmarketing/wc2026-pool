@@ -149,7 +149,7 @@
       "draws": 0
     },
     "ALG": {
-      "wins": 0,
+      "wins": 1,
       "draws": 0
     },
     "AUT": {
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-23",
-  "matches_processed": 43,
-  "total_goals": 131,
+  "matches_processed": 44,
+  "total_goals": 134,
   "total_red_cards": 8
 }
