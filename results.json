@@ -129,7 +129,7 @@
       "draws": 1
     },
     "FRA": {
-      "wins": 1,
+      "wins": 2,
       "draws": 0
     },
     "SEN": {
@@ -141,7 +141,7 @@
       "draws": 0
     },
     "NOR": {
-      "wins": 1,
+      "wins": 2,
       "draws": 0
     },
     "ARG": {
@@ -193,8 +193,8 @@
       "draws": 0
     }
   },
-  "updated": "2026-06-22",
-  "matches_processed": 41,
-  "total_goals": 123,
+  "updated": "2026-06-23",
+  "matches_processed": 43,
+  "total_goals": 131,
   "total_red_cards": 8
 }
