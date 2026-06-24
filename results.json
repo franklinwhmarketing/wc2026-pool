@@ -173,7 +173,7 @@
       "draws": 1
     },
     "CRO": {
-      "wins": 0,
+      "wins": 1,
       "draws": 0
     },
     "GHA": {
@@ -189,12 +189,12 @@
       "draws": 0
     },
     "COL": {
-      "wins": 1,
+      "wins": 2,
       "draws": 0
     }
   },
-  "updated": "2026-06-23",
-  "matches_processed": 46,
-  "total_goals": 139,
+  "updated": "2026-06-24",
+  "matches_processed": 48,
+  "total_goals": 141,
   "total_red_cards": 8
 }
