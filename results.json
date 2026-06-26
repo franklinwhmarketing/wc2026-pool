@@ -30,7 +30,7 @@
     },
     "PAR": {
       "wins": 1,
-      "draws": 0
+      "draws": 1
     },
     "QAT": {
       "wins": 0,
@@ -58,10 +58,10 @@
     },
     "AUS": {
       "wins": 1,
-      "draws": 0
+      "draws": 1
     },
     "TUR": {
-      "wins": 0,
+      "wins": 1,
       "draws": 0
     },
     "GER": {
@@ -73,12 +73,12 @@
       "draws": 1
     },
     "NED": {
-      "wins": 1,
+      "wins": 2,
       "draws": 1
     },
     "JPN": {
       "wins": 1,
-      "draws": 1
+      "draws": 2
     },
     "CIV": {
       "wins": 2,
@@ -90,7 +90,7 @@
     },
     "SWE": {
       "wins": 1,
-      "draws": 0
+      "draws": 1
     },
     "TUN": {
       "wins": 0,
@@ -193,8 +193,8 @@
       "draws": 0
     }
   },
-  "updated": "2026-06-25",
-  "matches_processed": 56,
-  "total_goals": 166,
+  "updated": "2026-06-26",
+  "matches_processed": 60,
+  "total_goals": 177,
   "total_red_cards": 8
 }
