@@ -129,11 +129,11 @@
       "draws": 1
     },
     "FRA": {
-      "wins": 2,
+      "wins": 3,
       "draws": 0
     },
     "SEN": {
-      "wins": 0,
+      "wins": 1,
       "draws": 0
     },
     "IRQ": {
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-26",
-  "matches_processed": 60,
-  "total_goals": 177,
-  "total_red_cards": 8
+  "matches_processed": 62,
+  "total_goals": 187,
+  "total_red_cards": 9
 }
