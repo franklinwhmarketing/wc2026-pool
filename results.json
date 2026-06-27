@@ -97,12 +97,12 @@
       "draws": 0
     },
     "ESP": {
-      "wins": 1,
+      "wins": 2,
       "draws": 1
     },
     "CPV": {
       "wins": 0,
-      "draws": 2
+      "draws": 3
     },
     "BEL": {
       "wins": 0,
@@ -114,7 +114,7 @@
     },
     "KSA": {
       "wins": 0,
-      "draws": 1
+      "draws": 2
     },
     "URU": {
       "wins": 0,
@@ -193,8 +193,8 @@
       "draws": 0
     }
   },
-  "updated": "2026-06-26",
-  "matches_processed": 62,
-  "total_goals": 187,
-  "total_red_cards": 9
+  "updated": "2026-06-27",
+  "matches_processed": 64,
+  "total_goals": 188,
+  "total_red_cards": 10
 }
