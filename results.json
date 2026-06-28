@@ -17,7 +17,7 @@
       "draws": 1
     },
     "CAN": {
-      "wins": 1,
+      "wins": 2,
       "draws": 1
     },
     "BIH": {
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-28",
-  "matches_processed": 72,
-  "total_goals": 215,
+  "matches_processed": 73,
+  "total_goals": 216,
   "total_red_cards": 10
 }
