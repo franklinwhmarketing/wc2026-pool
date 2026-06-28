@@ -145,16 +145,16 @@
       "draws": 0
     },
     "ARG": {
-      "wins": 2,
+      "wins": 3,
       "draws": 0
     },
     "ALG": {
       "wins": 1,
-      "draws": 0
+      "draws": 1
     },
     "AUT": {
       "wins": 1,
-      "draws": 0
+      "draws": 1
     },
     "JOR": {
       "wins": 0,
@@ -162,10 +162,10 @@
     },
     "POR": {
       "wins": 1,
-      "draws": 1
+      "draws": 2
     },
     "COD": {
-      "wins": 0,
+      "wins": 1,
       "draws": 1
     },
     "ENG": {
@@ -190,11 +190,11 @@
     },
     "COL": {
       "wins": 2,
-      "draws": 0
+      "draws": 1
     }
   },
-  "updated": "2026-06-27",
-  "matches_processed": 68,
-  "total_goals": 201,
+  "updated": "2026-06-28",
+  "matches_processed": 72,
+  "total_goals": 215,
   "total_red_cards": 10
 }
