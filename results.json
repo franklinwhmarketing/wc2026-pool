@@ -41,7 +41,7 @@
       "draws": 1
     },
     "BRA": {
-      "wins": 2,
+      "wins": 3,
       "draws": 1
     },
     "MAR": {
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-29",
-  "matches_processed": 73,
-  "total_goals": 216,
+  "matches_processed": 74,
+  "total_goals": 219,
   "total_red_cards": 10
 }
