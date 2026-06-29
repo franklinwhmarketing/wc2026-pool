@@ -29,7 +29,7 @@
       "draws": 0
     },
     "PAR": {
-      "wins": 1,
+      "wins": 2,
       "draws": 1
     },
     "QAT": {
@@ -194,7 +194,7 @@
     }
   },
   "updated": "2026-06-29",
-  "matches_processed": 74,
-  "total_goals": 219,
+  "matches_processed": 75,
+  "total_goals": 221,
   "total_red_cards": 10
 }
