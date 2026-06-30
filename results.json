@@ -129,7 +129,7 @@
       "draws": 1
     },
     "FRA": {
-      "wins": 3,
+      "wins": 4,
       "draws": 0
     },
     "SEN": {
@@ -210,13 +210,14 @@
     "PAN",
     "QAT",
     "SCO",
+    "SWE",
     "TUN",
     "TUR",
     "URU",
     "UZB"
   ],
   "updated": "2026-06-30",
-  "matches_processed": 77,
-  "total_goals": 226,
+  "matches_processed": 78,
+  "total_goals": 229,
   "total_red_cards": 10
 }
