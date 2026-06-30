@@ -209,10 +209,14 @@ def main():
             elif a['score'] > b['score'] or (a['score'] == b['score'] and a.get('winner')):
                 if a['code']:
                     results[a['code']]['wins'] += 1
+                if is_knockout and b['code']:
+                    eliminated.add(b['code'])  # loser exits tournament
                 log_entry += f" [WIN: {a['name']}]"
             elif b['score'] > a['score'] or (a['score'] == b['score'] and b.get('winner')):
                 if b['code']:
                     results[b['code']]['wins'] += 1
+                if is_knockout and a['code']:
+                    eliminated.add(a['code'])  # loser exits tournament
                 log_entry += f" [WIN: {b['name']}]"
 
             # Goals
