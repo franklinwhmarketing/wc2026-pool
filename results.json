@@ -45,7 +45,7 @@
       "draws": 1
     },
     "MAR": {
-      "wins": 2,
+      "wins": 3,
       "draws": 1
     },
     "HAI": {
@@ -193,8 +193,8 @@
       "draws": 1
     }
   },
-  "updated": "2026-06-29",
-  "matches_processed": 75,
-  "total_goals": 221,
+  "updated": "2026-06-30",
+  "matches_processed": 76,
+  "total_goals": 223,
   "total_red_cards": 10
 }
