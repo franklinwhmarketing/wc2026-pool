@@ -141,7 +141,7 @@
       "draws": 0
     },
     "NOR": {
-      "wins": 2,
+      "wins": 3,
       "draws": 0
     },
     "ARG": {
@@ -194,6 +194,7 @@
     }
   },
   "eliminated": [
+    "CIV",
     "CUW",
     "CZE",
     "GER",
@@ -215,7 +216,7 @@
     "UZB"
   ],
   "updated": "2026-06-30",
-  "matches_processed": 76,
-  "total_goals": 223,
+  "matches_processed": 77,
+  "total_goals": 226,
   "total_red_cards": 10
 }
