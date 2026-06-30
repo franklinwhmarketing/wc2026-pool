@@ -335,6 +335,20 @@
     background: var(--card2);
     border-radius: 6px;
     border: 1px solid var(--border);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .participant-team-row.team-active {
+    background: rgba(76,175,125,0.08);
+    border-color: rgba(76,175,125,0.28);
+  }
+  .participant-team-row.team-out {
+    background: rgba(224,84,84,0.07);
+    border-color: rgba(224,84,84,0.22);
+    opacity: 0.65;
+  }
+  .participant-team-row.team-out .participant-team-name {
+    text-decoration: line-through;
+    color: var(--muted);
   }
   .participant-team-flag { font-size: 16px; }
   .participant-team-name { flex: 1; font-size: 12px; font-weight: 600; }
@@ -790,6 +804,7 @@ const SEED_PARTICIPANTS = [
 ];
 
 let state = loadState();
+let eliminatedSet = new Set(); // populated from results.json on sync
 
 function loadState() {
   try {
@@ -891,7 +906,9 @@ function renderLeaderboard() {
     const teamRows = p.teams.map(code => {
       const t = teamByCode(code);
       const tpts = teamPoints(code);
-      return `<div class="participant-team-row">
+      const isOut = eliminatedSet.has(code);
+      const statusClass = eliminatedSet.size > 0 ? (isOut ? 'team-out' : 'team-active') : '';
+      return `<div class="participant-team-row ${statusClass}">
         <div class="participant-team-flag">${t ? t.flag : '?'}</div>
         <div class="participant-team-name">${t ? t.name : code}</div>
         <div class="participant-team-cost">${t ? t.cost + ' pts' : ''}</div>
@@ -975,6 +992,7 @@ async function syncResults() {
     if (!r.ok) throw new Error('results.json not found');
     const data = await r.json();
     state.results = data.results || {};
+    eliminatedSet = new Set(data.eliminated || []);
     const updated = data.updated || '—';
     const count = data.matches_processed || 0;
     statusEl.textContent = `Updated ${updated} · ${count} matches`;
@@ -1009,7 +1027,9 @@ function renderParticipants() {
     const teamRows = p.teams.map(code => {
       const t = teamByCode(code);
       const tpts = teamPoints(code);
-      return `<div class="participant-team-row">
+      const isOut = eliminatedSet.has(code);
+      const statusClass = eliminatedSet.size > 0 ? (isOut ? 'team-out' : 'team-active') : '';
+      return `<div class="participant-team-row ${statusClass}">
         <div class="participant-team-flag">${t ? t.flag : '?'}</div>
         <div class="participant-team-name">${t ? t.name : code}</div>
         <div class="participant-team-cost">${t ? t.cost + ' pts' : ''}</div>

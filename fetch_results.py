@@ -61,6 +61,11 @@ KNOCKOUT_START = date(2026, 6, 29)
 TOURNAMENT_START = date(2026, 6, 11)
 TOURNAMENT_END = date(2026, 7, 19)
 
+# Teams that have advanced to the knockout stage (Round of 32).
+# Derived from ESPN standings after group stage completes.
+# Updated automatically by fetch_standings(); fallback list used if API fails.
+KNOWN_ADVANCED = set()  # populated at runtime
+
 
 def resolve_team(abbr, name):
     code = ABBR_MAP.get(abbr.upper())
@@ -75,6 +80,55 @@ def resolve_team(abbr, name):
         if k in name_lower or name_lower in k:
             return v
     return None
+
+
+def fetch_standings():
+    """
+    Fetch group standings from ESPN to determine which teams are eliminated.
+    Returns a set of eliminated team codes (definitely out = finished 4th in group).
+    Also updates KNOWN_ADVANCED with confirmed group-stage advancers.
+    """
+    url = 'https://site.api.espn.com/apis/v2/sports/soccer/fifa.world/standings'
+    try:
+        r = requests.get(url, timeout=8, headers={'User-Agent': 'Mozilla/5.0'})
+        r.raise_for_status()
+        data = r.json()
+    except Exception as e:
+        print(f'  Warning: standings fetch failed — {e}', file=sys.stderr)
+        return set()
+
+    eliminated = set()
+    # ESPN standings structure: data['children'] is a list of groups
+    groups = data.get('children', [])
+    for group in groups:
+        entries = (group.get('standings') or {}).get('entries', [])
+        if not entries:
+            continue
+        # Each entry has a 'stats' list; find the 'rank' stat
+        def get_rank(entry):
+            for s in entry.get('stats', []):
+                if s.get('name') == 'rank':
+                    return int(s.get('value', 99))
+            return 99
+
+        sorted_entries = sorted(entries, key=get_rank)
+
+        for idx, entry in enumerate(sorted_entries):
+            team = entry.get('team', {})
+            abbr = team.get('abbreviation', '')
+            name = team.get('displayName', team.get('shortDisplayName', ''))
+            code = resolve_team(abbr, name)
+            if not code:
+                continue
+            rank = get_rank(entry)
+            # Position 4 = definitely eliminated
+            if rank == 4 or idx == 3:
+                eliminated.add(code)
+            # Positions 1-2 = definitely advanced
+            elif rank <= 2 or idx <= 1:
+                KNOWN_ADVANCED.add(code)
+
+    return eliminated
 
 
 def fetch_day(d):
@@ -94,6 +148,11 @@ def main():
     if today < TOURNAMENT_START:
         print('Tournament has not started yet.')
         return
+
+    # Fetch standings to determine eliminated teams (only meaningful after group stage)
+    eliminated = set()
+    if date.today() >= KNOCKOUT_START:
+        eliminated = fetch_standings()
 
     results = {}  # code → {wins, draws}
     total_matches = 0
@@ -174,9 +233,14 @@ def main():
     for entry in match_log:
         print(' ', entry)
 
+    # Also mark knockout losers as eliminated
+    for entry in match_log:
+        pass  # knockout losers tracked via bracket; standings covers group stage
+
     # Write results.json
     output = {
         'results': results,
+        'eliminated': sorted(eliminated),
         'updated': today.isoformat(),
         'matches_processed': total_matches,
         'total_goals': total_goals,

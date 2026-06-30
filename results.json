@@ -193,6 +193,20 @@
       "draws": 1
     }
   },
+  "eliminated": [
+    "CUW",
+    "CZE",
+    "HAI",
+    "IRQ",
+    "JOR",
+    "KSA",
+    "NZL",
+    "PAN",
+    "QAT",
+    "TUN",
+    "TUR",
+    "UZB"
+  ],
   "updated": "2026-06-30",
   "matches_processed": 76,
   "total_goals": 223,
