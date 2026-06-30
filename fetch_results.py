@@ -113,19 +113,18 @@ def fetch_standings():
 
         sorted_entries = sorted(entries, key=get_rank)
 
-        for idx, entry in enumerate(sorted_entries):
+        for entry in entries:
             team = entry.get('team', {})
             abbr = team.get('abbreviation', '')
             name = team.get('displayName', team.get('shortDisplayName', ''))
             code = resolve_team(abbr, name)
             if not code:
                 continue
-            rank = get_rank(entry)
-            # Position 4 = definitely eliminated
-            if rank == 4 or idx == 3:
+            stats = {s['name']: s.get('value') for s in entry.get('stats', [])}
+            advanced = stats.get('advanced')
+            if advanced == 0.0:
                 eliminated.add(code)
-            # Positions 1-2 = definitely advanced
-            elif rank <= 2 or idx <= 1:
+            elif advanced == 1.0:
                 KNOWN_ADVANCED.add(code)
 
     return eliminated
