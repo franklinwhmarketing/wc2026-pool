@@ -338,17 +338,20 @@
     transition: background 0.2s, border-color 0.2s;
   }
   .participant-team-row.team-active {
-    background: rgba(76,175,125,0.08);
-    border-color: rgba(76,175,125,0.28);
+    background: rgba(76,175,125,0.14);
+    border-color: rgba(76,175,125,0.4);
+  }
+  .participant-team-row.team-active .participant-team-name {
+    color: #7dd4a8;
   }
   .participant-team-row.team-out {
-    background: rgba(224,84,84,0.07);
-    border-color: rgba(224,84,84,0.22);
-    opacity: 0.65;
+    background: rgba(224,84,84,0.12);
+    border-color: rgba(224,84,84,0.35);
+    opacity: 0.6;
   }
   .participant-team-row.team-out .participant-team-name {
     text-decoration: line-through;
-    color: var(--muted);
+    color: #e05454;
   }
   .participant-team-flag { font-size: 16px; }
   .participant-team-name { flex: 1; font-size: 12px; font-weight: 600; }
