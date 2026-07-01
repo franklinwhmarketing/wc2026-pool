@@ -105,7 +105,7 @@
       "draws": 3
     },
     "BEL": {
-      "wins": 1,
+      "wins": 2,
       "draws": 2
     },
     "EGY": {
@@ -212,6 +212,7 @@
     "PAN",
     "QAT",
     "SCO",
+    "SEN",
     "SWE",
     "TUN",
     "TUR",
@@ -219,7 +220,7 @@
     "UZB"
   ],
   "updated": "2026-07-01",
-  "matches_processed": 80,
-  "total_goals": 234,
+  "matches_processed": 81,
+  "total_goals": 239,
   "total_red_cards": 11
 }
