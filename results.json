@@ -1,7 +1,7 @@
 {
   "results": {
     "MEX": {
-      "wins": 3,
+      "wins": 4,
       "draws": 0
     },
     "RSA": {
@@ -197,6 +197,7 @@
     "CIV",
     "CUW",
     "CZE",
+    "ECU",
     "GER",
     "HAI",
     "IRN",
@@ -216,8 +217,8 @@
     "URU",
     "UZB"
   ],
-  "updated": "2026-06-30",
-  "matches_processed": 78,
-  "total_goals": 229,
-  "total_red_cards": 10
+  "updated": "2026-07-01",
+  "matches_processed": 79,
+  "total_goals": 231,
+  "total_red_cards": 11
 }
