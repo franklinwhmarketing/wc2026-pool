@@ -169,7 +169,7 @@
       "draws": 1
     },
     "ENG": {
-      "wins": 2,
+      "wins": 3,
       "draws": 1
     },
     "CRO": {
@@ -195,6 +195,7 @@
   },
   "eliminated": [
     "CIV",
+    "COD",
     "CUW",
     "CZE",
     "ECU",
@@ -218,7 +219,7 @@
     "UZB"
   ],
   "updated": "2026-07-01",
-  "matches_processed": 79,
-  "total_goals": 231,
+  "matches_processed": 80,
+  "total_goals": 234,
   "total_red_cards": 11
 }
