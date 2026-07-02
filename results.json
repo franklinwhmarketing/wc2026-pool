@@ -97,7 +97,7 @@
       "draws": 0
     },
     "ESP": {
-      "wins": 2,
+      "wins": 3,
       "draws": 1
     },
     "CPV": {
@@ -194,6 +194,7 @@
     }
   },
   "eliminated": [
+    "AUT",
     "BIH",
     "CIV",
     "COD",
@@ -221,7 +222,7 @@
     "UZB"
   ],
   "updated": "2026-07-02",
-  "matches_processed": 82,
-  "total_goals": 241,
+  "matches_processed": 83,
+  "total_goals": 244,
   "total_red_cards": 12
 }
