@@ -37,7 +37,7 @@
       "draws": 1
     },
     "SUI": {
-      "wins": 2,
+      "wins": 3,
       "draws": 1
     },
     "BRA": {
@@ -194,6 +194,7 @@
     }
   },
   "eliminated": [
+    "ALG",
     "AUT",
     "BIH",
     "CIV",
@@ -223,7 +224,7 @@
     "UZB"
   ],
   "updated": "2026-07-03",
-  "matches_processed": 84,
-  "total_goals": 247,
+  "matches_processed": 85,
+  "total_goals": 249,
   "total_red_cards": 12
 }
