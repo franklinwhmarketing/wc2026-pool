@@ -109,7 +109,7 @@
       "draws": 2
     },
     "EGY": {
-      "wins": 1,
+      "wins": 2,
       "draws": 2
     },
     "KSA": {
@@ -195,6 +195,7 @@
   },
   "eliminated": [
     "ALG",
+    "AUS",
     "AUT",
     "BIH",
     "CIV",
@@ -224,7 +225,7 @@
     "UZB"
   ],
   "updated": "2026-07-03",
-  "matches_processed": 85,
-  "total_goals": 249,
+  "matches_processed": 86,
+  "total_goals": 251,
   "total_red_cards": 12
 }
