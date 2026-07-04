@@ -45,7 +45,7 @@
       "draws": 1
     },
     "MAR": {
-      "wins": 3,
+      "wins": 4,
       "draws": 1
     },
     "HAI": {
@@ -198,6 +198,7 @@
     "AUS",
     "AUT",
     "BIH",
+    "CAN",
     "CIV",
     "COD",
     "CPV",
@@ -227,7 +228,7 @@
     "UZB"
   ],
   "updated": "2026-07-04",
-  "matches_processed": 88,
-  "total_goals": 257,
+  "matches_processed": 89,
+  "total_goals": 260,
   "total_red_cards": 12
 }
