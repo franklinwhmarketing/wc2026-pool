@@ -145,7 +145,7 @@
       "draws": 0
     },
     "ARG": {
-      "wins": 3,
+      "wins": 4,
       "draws": 0
     },
     "ALG": {
@@ -189,7 +189,7 @@
       "draws": 0
     },
     "COL": {
-      "wins": 2,
+      "wins": 3,
       "draws": 1
     }
   },
@@ -200,11 +200,13 @@
     "BIH",
     "CIV",
     "COD",
+    "CPV",
     "CRO",
     "CUW",
     "CZE",
     "ECU",
     "GER",
+    "GHA",
     "HAI",
     "IRN",
     "IRQ",
@@ -224,8 +226,8 @@
     "URU",
     "UZB"
   ],
-  "updated": "2026-07-03",
-  "matches_processed": 86,
-  "total_goals": 251,
+  "updated": "2026-07-04",
+  "matches_processed": 88,
+  "total_goals": 257,
   "total_red_cards": 12
 }
