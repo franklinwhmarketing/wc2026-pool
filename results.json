@@ -141,7 +141,7 @@
       "draws": 0
     },
     "NOR": {
-      "wins": 3,
+      "wins": 4,
       "draws": 0
     },
     "ARG": {
@@ -198,6 +198,7 @@
     "AUS",
     "AUT",
     "BIH",
+    "BRA",
     "CAN",
     "CIV",
     "COD",
@@ -229,7 +230,7 @@
     "UZB"
   ],
   "updated": "2026-07-05",
-  "matches_processed": 90,
-  "total_goals": 261,
+  "matches_processed": 91,
+  "total_goals": 264,
   "total_red_cards": 12
 }
