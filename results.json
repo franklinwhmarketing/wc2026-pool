@@ -129,7 +129,7 @@
       "draws": 1
     },
     "FRA": {
-      "wins": 4,
+      "wins": 5,
       "draws": 0
     },
     "SEN": {
@@ -218,6 +218,7 @@
     "NED",
     "NZL",
     "PAN",
+    "PAR",
     "QAT",
     "SCO",
     "SEN",
@@ -227,8 +228,8 @@
     "URU",
     "UZB"
   ],
-  "updated": "2026-07-04",
-  "matches_processed": 89,
-  "total_goals": 260,
+  "updated": "2026-07-05",
+  "matches_processed": 90,
+  "total_goals": 261,
   "total_red_cards": 12
 }
