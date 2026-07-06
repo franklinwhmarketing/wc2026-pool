@@ -97,7 +97,7 @@
       "draws": 0
     },
     "ESP": {
-      "wins": 3,
+      "wins": 4,
       "draws": 1
     },
     "CPV": {
@@ -221,6 +221,7 @@
     "NZL",
     "PAN",
     "PAR",
+    "POR",
     "QAT",
     "RSA",
     "SCO",
@@ -256,7 +257,7 @@
     "ECU": 0,
     "SWE": 0,
     "TUN": 0,
-    "ESP": 4,
+    "ESP": 3,
     "CPV": 0,
     "BEL": 4,
     "EGY": 4,
@@ -272,7 +273,7 @@
     "ALG": 0,
     "AUT": 0,
     "JOR": 0,
-    "POR": 4,
+    "POR": 0,
     "COD": 0,
     "ENG": 3,
     "CRO": 0,
@@ -282,7 +283,7 @@
     "COL": 4
   },
   "updated": "2026-07-06",
-  "matches_processed": 92,
-  "total_goals": 269,
+  "matches_processed": 93,
+  "total_goals": 270,
   "total_red_cards": 13
 }
