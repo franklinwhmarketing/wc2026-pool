@@ -1194,11 +1194,34 @@ function switchTab(name) {
   document.getElementById('panel-' + name).classList.add('active');
 }
 
+function buildTeamRows(p) {
+  return p.teams.map(code => {
+    const t = teamByCode(code);
+    const tpts = teamPoints(code);
+    const isOut = eliminatedSet.has(code);
+    const statusClass = eliminatedSet.size > 0 ? (isOut ? 'team-out' : 'team-active') : '';
+    return `<div class="participant-team-row ${statusClass}">
+      <div class="participant-team-flag">${t ? t.flag : '?'}</div>
+      <div class="participant-team-name">${t ? t.name : code}</div>
+      <div class="participant-team-cost">${t ? t.cost + ' pts' : ''}</div>
+      <div class="participant-team-pts ${tpts === 0 ? 'zero' : ''}">${tpts > 0 ? '+' + tpts : '—'}</div>
+    </div>`;
+  }).join('');
+}
+
 function toggleRoster(id) {
   const detailRow = document.getElementById('detail-' + id);
   const nameEl = document.getElementById('cname-' + id);
   if (!detailRow) return;
   const isOpen = detailRow.classList.contains('open');
+  if (!isOpen) {
+    // Always refresh team rows with current eliminatedSet on open
+    const p = state.participants.find(x => x.id === id);
+    if (p) {
+      const teamsEl = detailRow.querySelector('.participant-teams');
+      if (teamsEl) teamsEl.innerHTML = buildTeamRows(p);
+    }
+  }
   detailRow.classList.toggle('open', !isOpen);
   if (nameEl) nameEl.classList.toggle('open', !isOpen);
 }
