@@ -66,6 +66,10 @@ TOURNAMENT_END = date(2026, 7, 19)
 # Updated automatically by fetch_standings(); fallback list used if API fails.
 KNOWN_ADVANCED = set()  # populated at runtime
 
+# Teams confirmed eliminated where ESPN API didn't log the knockout game.
+# Add codes here when ESPN has a data gap (e.g. RSA lost to CAN in R32 but no game record exists).
+MANUAL_ELIMINATED = {'RSA'}
+
 
 def resolve_team(abbr, name):
     code = ABBR_MAP.get(abbr.upper())
@@ -154,6 +158,7 @@ def main():
         eliminated = fetch_standings()
 
     results = {}  # code → {wins, draws}
+    knockout_wins = {}  # code → knockout wins only (used to compute remaining games)
     total_matches = 0
     total_goals = 0
     total_red_cards = 0
@@ -208,12 +213,16 @@ def main():
             elif a['score'] > b['score'] or (a['score'] == b['score'] and a.get('winner')):
                 if a['code']:
                     results[a['code']]['wins'] += 1
+                if is_knockout and a['code']:
+                    knockout_wins[a['code']] = knockout_wins.get(a['code'], 0) + 1
                 if is_knockout and b['code']:
                     eliminated.add(b['code'])  # loser exits tournament
                 log_entry += f" [WIN: {a['name']}]"
             elif b['score'] > a['score'] or (a['score'] == b['score'] and b.get('winner')):
                 if b['code']:
                     results[b['code']]['wins'] += 1
+                if is_knockout and b['code']:
+                    knockout_wins[b['code']] = knockout_wins.get(b['code'], 0) + 1
                 if is_knockout and a['code']:
                     eliminated.add(a['code'])  # loser exits tournament
                 log_entry += f" [WIN: {b['name']}]"
@@ -236,14 +245,24 @@ def main():
     for entry in match_log:
         print(' ', entry)
 
-    # Also mark knockout losers as eliminated
-    for entry in match_log:
-        pass  # knockout losers tracked via bracket; standings covers group stage
+    # Apply manual overrides for teams ESPN API missed
+    eliminated |= MANUAL_ELIMINATED
+
+    # Compute remaining_wins per live team.
+    # A team that survived groups starts with 5 possible knockout wins (R32→R16→QF→SF→Final).
+    # Each knockout win they've already recorded reduces that by 1.
+    remaining_wins = {}
+    for code in results:
+        if code in eliminated:
+            remaining_wins[code] = 0
+        else:
+            remaining_wins[code] = max(0, 5 - knockout_wins.get(code, 0))
 
     # Write results.json
     output = {
         'results': results,
         'eliminated': sorted(eliminated),
+        'remaining_wins': remaining_wins,
         'updated': today.isoformat(),
         'matches_processed': total_matches,
         'total_goals': total_goals,

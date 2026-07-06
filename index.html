@@ -815,6 +815,7 @@ const SEED_PARTICIPANTS = [
 
 let state = loadState();
 let eliminatedSet = new Set(); // populated from results.json on sync
+let remainingWinsMap = {}; // code → max knockout wins still possible (from results.json)
 
 function loadState() {
   try {
@@ -845,6 +846,12 @@ function teamPoints(code) {
 
 function participantPoints(p) {
   return p.teams.reduce((sum, code) => sum + teamPoints(code), 0);
+}
+
+function maxPossibleScore(p) {
+  return participantPoints(p) + p.teams.reduce((sum, code) => {
+    return sum + (remainingWinsMap[code] || 0) * 3;
+  }, 0);
 }
 
 function totalWins(p) {
@@ -902,6 +909,9 @@ function renderLeaderboard() {
     return;
   }
 
+  const hasRemainingData = Object.keys(remainingWinsMap).length > 0;
+  const thirdPts = hasRemainingData && sorted.length >= 3 ? participantPoints(sorted[2]) : Infinity;
+
   tbody.innerHTML = sorted.map((p, i) => {
     const rank = i + 1;
     const pts = participantPoints(p);
@@ -909,7 +919,7 @@ function renderLeaderboard() {
     const rankLabel = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
 
     const tied = pts > 0 && sorted.some((o, j) => j !== i && participantPoints(o) === pts);
-    const noChance = eliminatedSet.size > 0 && p.teams.every(code => eliminatedSet.has(code));
+    const noChance = hasRemainingData && maxPossibleScore(p) < thirdPts;
 
     const spent = p.teams.reduce((s, c) => s + ((teamByCode(c) || {}).cost || 0), 0);
     const wcWinner = p.tbWinner ? (teamByCode(p.tbWinner) || { flag: '', name: p.tbWinner }) : null;
@@ -1003,6 +1013,7 @@ async function syncResults() {
     const data = await r.json();
     state.results = data.results || {};
     eliminatedSet = new Set(data.eliminated || []);
+    remainingWinsMap = data.remaining_wins || {};
     const updated = data.updated || '—';
     const count = data.matches_processed || 0;
     statusEl.textContent = `Updated ${updated} · ${count} matches`;
