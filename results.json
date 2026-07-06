@@ -169,7 +169,7 @@
       "draws": 1
     },
     "ENG": {
-      "wins": 3,
+      "wins": 4,
       "draws": 1
     },
     "CRO": {
@@ -216,6 +216,7 @@
     "JPN",
     "KOR",
     "KSA",
+    "MEX",
     "NED",
     "NZL",
     "PAN",
@@ -229,8 +230,8 @@
     "URU",
     "UZB"
   ],
-  "updated": "2026-07-05",
-  "matches_processed": 91,
-  "total_goals": 264,
-  "total_red_cards": 12
+  "updated": "2026-07-06",
+  "matches_processed": 92,
+  "total_goals": 269,
+  "total_red_cards": 13
 }
