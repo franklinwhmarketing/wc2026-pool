@@ -230,6 +230,13 @@
   .rank-other { color: var(--muted2); font-size: 14px; }
 
   .player-name { font-weight: 700; font-size: 15px; }
+  .lb-row.no-chance td { opacity: 0.45; }
+  .lb-row.no-chance:hover td { opacity: 0.6 !important; }
+  .out-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 4px; vertical-align: middle;
+    background: rgba(224,84,84,0.12); color: #e05454; border: 1px solid rgba(224,84,84,0.28);
+  }
   .tied-tag {
     font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
     padding: 2px 6px; border-radius: 4px; vertical-align: middle; cursor: default;
@@ -901,8 +908,8 @@ function renderLeaderboard() {
     const rankClass = rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : rank === 3 ? 'rank-3' : 'rank-other';
     const rankLabel = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
 
-    // Flag scores shared with a neighbor — tiebreakers (on Rosters tab) decide those
     const tied = pts > 0 && sorted.some((o, j) => j !== i && participantPoints(o) === pts);
+    const noChance = eliminatedSet.size > 0 && p.teams.every(code => eliminatedSet.has(code));
 
     const spent = p.teams.reduce((s, c) => s + ((teamByCode(c) || {}).cost || 0), 0);
     const wcWinner = p.tbWinner ? (teamByCode(p.tbWinner) || { flag: '', name: p.tbWinner }) : null;
@@ -919,10 +926,10 @@ function renderLeaderboard() {
       </div>`;
     }).join('');
 
-    return `<tr class="lb-row" onclick="toggleRoster(${p.id})">
+    return `<tr class="lb-row${noChance ? ' no-chance' : ''}" onclick="toggleRoster(${p.id})">
       <td><div class="rank-num ${rankClass}">${rankLabel}</div></td>
       <td>
-        <div class="player-name clickable-name" id="cname-${p.id}">${p.name}${tied ? ' <span class="tied-tag" title="Tied on points — tiebreakers decide">tied</span>' : ''}</div>
+        <div class="player-name clickable-name" id="cname-${p.id}">${p.name}${tied ? ' <span class="tied-tag" title="Tied on points — tiebreakers decide">tied</span>' : ''}${noChance ? ' <span class="out-badge">Out</span>' : ''}</div>
       </td>
       <td style="text-align:right">
         <div class="points-big">${pts}</div>
