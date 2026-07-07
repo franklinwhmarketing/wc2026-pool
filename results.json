@@ -105,7 +105,7 @@
       "draws": 3
     },
     "BEL": {
-      "wins": 2,
+      "wins": 3,
       "draws": 2
     },
     "EGY": {
@@ -230,6 +230,7 @@
     "TUN",
     "TUR",
     "URU",
+    "USA",
     "UZB"
   ],
   "remaining_wins": {
@@ -239,7 +240,7 @@
     "CZE": 0,
     "CAN": 0,
     "BIH": 0,
-    "USA": 4,
+    "USA": 0,
     "PAR": 0,
     "QAT": 0,
     "SUI": 4,
@@ -259,7 +260,7 @@
     "TUN": 0,
     "ESP": 3,
     "CPV": 0,
-    "BEL": 4,
+    "BEL": 3,
     "EGY": 4,
     "KSA": 0,
     "URU": 0,
@@ -282,8 +283,8 @@
     "UZB": 0,
     "COL": 4
   },
-  "updated": "2026-07-06",
-  "matches_processed": 93,
-  "total_goals": 270,
+  "updated": "2026-07-07",
+  "matches_processed": 94,
+  "total_goals": 275,
   "total_red_cards": 13
 }
