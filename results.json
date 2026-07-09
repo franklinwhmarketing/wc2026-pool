@@ -129,7 +129,7 @@
       "draws": 1
     },
     "FRA": {
-      "wins": 5,
+      "wins": 6,
       "draws": 0
     },
     "SEN": {
@@ -218,6 +218,7 @@
     "JPN",
     "KOR",
     "KSA",
+    "MAR",
     "MEX",
     "NED",
     "NZL",
@@ -247,7 +248,7 @@
     "QAT": 0,
     "SUI": 3,
     "BRA": 0,
-    "MAR": 3,
+    "MAR": 0,
     "HAI": 0,
     "SCO": 0,
     "AUS": 0,
@@ -268,7 +269,7 @@
     "URU": 0,
     "IRN": 0,
     "NZL": 0,
-    "FRA": 3,
+    "FRA": 2,
     "SEN": 0,
     "IRQ": 0,
     "NOR": 3,
@@ -286,7 +287,7 @@
     "COL": 0
   },
   "updated": "2026-07-09",
-  "matches_processed": 96,
-  "total_goals": 280,
+  "matches_processed": 97,
+  "total_goals": 282,
   "total_red_cards": 13
 }
