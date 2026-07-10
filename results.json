@@ -97,7 +97,7 @@
       "draws": 0
     },
     "ESP": {
-      "wins": 4,
+      "wins": 5,
       "draws": 1
     },
     "CPV": {
@@ -197,6 +197,7 @@
     "ALG",
     "AUS",
     "AUT",
+    "BEL",
     "BIH",
     "BRA",
     "CAN",
@@ -261,9 +262,9 @@
     "ECU": 0,
     "SWE": 0,
     "TUN": 0,
-    "ESP": 3,
+    "ESP": 2,
     "CPV": 0,
-    "BEL": 3,
+    "BEL": 0,
     "EGY": 0,
     "KSA": 0,
     "URU": 0,
@@ -287,7 +288,7 @@
     "COL": 0
   },
   "updated": "2026-07-10",
-  "matches_processed": 97,
-  "total_goals": 282,
+  "matches_processed": 98,
+  "total_goals": 285,
   "total_red_cards": 13
 }
