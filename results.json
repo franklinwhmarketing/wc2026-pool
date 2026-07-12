@@ -145,7 +145,7 @@
       "draws": 0
     },
     "ARG": {
-      "wins": 5,
+      "wins": 6,
       "draws": 0
     },
     "ALG": {
@@ -231,6 +231,7 @@
     "RSA",
     "SCO",
     "SEN",
+    "SUI",
     "SWE",
     "TUN",
     "TUR",
@@ -248,7 +249,7 @@
     "USA": 0,
     "PAR": 0,
     "QAT": 0,
-    "SUI": 3,
+    "SUI": 0,
     "BRA": 0,
     "MAR": 0,
     "HAI": 0,
@@ -275,7 +276,7 @@
     "SEN": 0,
     "IRQ": 0,
     "NOR": 0,
-    "ARG": 3,
+    "ARG": 2,
     "ALG": 0,
     "AUT": 0,
     "JOR": 0,
@@ -288,8 +289,8 @@
     "UZB": 0,
     "COL": 0
   },
-  "updated": "2026-07-12",
-  "matches_processed": 99,
-  "total_goals": 288,
-  "total_red_cards": 13
+  "updated": "2026-07-11",
+  "matches_processed": 100,
+  "total_goals": 292,
+  "total_red_cards": 14
 }
