@@ -169,7 +169,7 @@
       "draws": 1
     },
     "ENG": {
-      "wins": 4,
+      "wins": 5,
       "draws": 1
     },
     "CRO": {
@@ -222,6 +222,7 @@
     "MAR",
     "MEX",
     "NED",
+    "NOR",
     "NZL",
     "PAN",
     "PAR",
@@ -273,22 +274,22 @@
     "FRA": 2,
     "SEN": 0,
     "IRQ": 0,
-    "NOR": 3,
+    "NOR": 0,
     "ARG": 3,
     "ALG": 0,
     "AUT": 0,
     "JOR": 0,
     "POR": 0,
     "COD": 0,
-    "ENG": 3,
+    "ENG": 2,
     "CRO": 0,
     "GHA": 0,
     "PAN": 0,
     "UZB": 0,
     "COL": 0
   },
-  "updated": "2026-07-11",
-  "matches_processed": 98,
-  "total_goals": 285,
+  "updated": "2026-07-12",
+  "matches_processed": 99,
+  "total_goals": 288,
   "total_red_cards": 13
 }
