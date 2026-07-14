@@ -97,7 +97,7 @@
       "draws": 0
     },
     "ESP": {
-      "wins": 5,
+      "wins": 6,
       "draws": 1
     },
     "CPV": {
@@ -210,6 +210,7 @@
     "CZE",
     "ECU",
     "EGY",
+    "FRA",
     "GER",
     "GHA",
     "HAI",
@@ -264,7 +265,7 @@
     "ECU": 0,
     "SWE": 0,
     "TUN": 0,
-    "ESP": 2,
+    "ESP": 1,
     "CPV": 0,
     "BEL": 0,
     "EGY": 0,
@@ -272,7 +273,7 @@
     "URU": 0,
     "IRN": 0,
     "NZL": 0,
-    "FRA": 2,
+    "FRA": 0,
     "SEN": 0,
     "IRQ": 0,
     "NOR": 0,
@@ -290,7 +291,7 @@
     "COL": 0
   },
   "updated": "2026-07-14",
-  "matches_processed": 100,
-  "total_goals": 292,
+  "matches_processed": 101,
+  "total_goals": 294,
   "total_red_cards": 14
 }
