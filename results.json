@@ -145,7 +145,7 @@
       "draws": 0
     },
     "ARG": {
-      "wins": 6,
+      "wins": 7,
       "draws": 0
     },
     "ALG": {
@@ -210,6 +210,7 @@
     "CZE",
     "ECU",
     "EGY",
+    "ENG",
     "FRA",
     "GER",
     "GHA",
@@ -277,13 +278,13 @@
     "SEN": 0,
     "IRQ": 0,
     "NOR": 0,
-    "ARG": 2,
+    "ARG": 1,
     "ALG": 0,
     "AUT": 0,
     "JOR": 0,
     "POR": 0,
     "COD": 0,
-    "ENG": 2,
+    "ENG": 0,
     "CRO": 0,
     "GHA": 0,
     "PAN": 0,
@@ -291,7 +292,7 @@
     "COL": 0
   },
   "updated": "2026-07-15",
-  "matches_processed": 101,
-  "total_goals": 294,
+  "matches_processed": 102,
+  "total_goals": 297,
   "total_red_cards": 14
 }
