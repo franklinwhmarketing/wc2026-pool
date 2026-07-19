@@ -556,6 +556,143 @@
     .roster-detail-inner { padding: 0 12px; }
     .roster-detail-row.open .roster-detail-inner { padding: 14px 12px; }
   }
+
+  /* BALLOTS TAB */
+  .ballots-proof-banner {
+    background: rgba(211,138,61,0.08);
+    border: 1px solid var(--amber-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .ballots-proof-banner strong { color: var(--amber); }
+  .ballot-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .ballot-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ballot-participant-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .ballot-participant-pts {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .ballot-contender-note {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: rgba(211,138,61,0.12);
+    color: var(--amber);
+    border: 1px solid var(--amber-border);
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .ballot-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .ballot-photo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ballot-photo-img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    cursor: zoom-in;
+    transition: opacity 0.15s, border-color 0.15s;
+    display: block;
+  }
+  .ballot-photo-img:hover { opacity: 0.9; border-color: var(--amber-border); }
+  .ballot-timestamp {
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .ballot-timestamp .ts-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+  .ballot-timestamp .ts-label {
+    font-weight: 600;
+    color: var(--green);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  /* Lightbox */
+  .ballot-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .ballot-lightbox.open { display: flex; }
+  .ballot-lightbox img {
+    max-width: 92vw;
+    max-height: 92vh;
+    border-radius: 8px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+    object-fit: contain;
+  }
+  .ballot-lightbox-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+  }
+  .ballot-lightbox-close:hover { opacity: 1; }
+  .ballot-lightbox-ts {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  @media (max-width: 600px) {
+    .ballot-photos { grid-template-columns: 1fr; }
+    .ballot-card { padding: 14px; }
+  }
 </style>
 </head>
 <body>
@@ -580,6 +717,7 @@
 <div class="tabs">
   <div class="tab active" onclick="switchTab('leaderboard')">🏆&nbsp; Standings</div>
   <div class="tab" onclick="switchTab('results')">⚽&nbsp; Team Results</div>
+  <div class="tab" onclick="switchTab('ballots')">📸&nbsp; Ballots</div>
 </div>
 
 <main>
@@ -650,7 +788,108 @@
     <div class="results-grid" id="results-grid"></div>
   </div>
 
+  <!-- BALLOTS -->
+  <div id="panel-ballots" class="panel">
+    <div class="ballots-proof-banner">
+      All ballots photographed <strong>June 11, 2026</strong> — the day the tournament started — before any results were known. Timestamps shown are from the original EXIF metadata embedded in each photo. Tap any image to enlarge.
+    </div>
+
+    <!-- 1st Place: Brandon S. 2 -->
+    <div class="ballot-card">
+      <div class="ballot-card-header">
+        <div class="rank-num rank-1">🥇</div>
+        <div>
+          <div class="ballot-participant-name">Brandon S. 2</div>
+          <div class="ballot-participant-pts">88 pts · 1st place</div>
+        </div>
+      </div>
+      <div class="ballot-photos">
+        <div class="ballot-photo-item">
+          <img src="ballots/IMG_0646.jpg" class="ballot-photo-img" alt="Brandon S. 2 ballot p.1"
+               onclick="openLightbox(this.src, 'Jun 11, 2026 · 11:13:37 AM PDT')">
+          <div class="ballot-timestamp">
+            <span class="ts-dot"></span>
+            <span><span class="ts-label">EXIF</span> &nbsp;Jun 11, 2026 · 11:13:37 AM PDT</span>
+          </div>
+        </div>
+        <div class="ballot-photo-item">
+          <img src="ballots/IMG_0647.jpg" class="ballot-photo-img" alt="Brandon S. 2 ballot p.2"
+               onclick="openLightbox(this.src, 'Jun 11, 2026 · 11:13:41 AM PDT')">
+          <div class="ballot-timestamp">
+            <span class="ts-dot"></span>
+            <span><span class="ts-label">EXIF</span> &nbsp;Jun 11, 2026 · 11:13:41 AM PDT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2nd Place: Brandon S. -->
+    <div class="ballot-card">
+      <div class="ballot-card-header">
+        <div class="rank-num rank-2">🥈</div>
+        <div>
+          <div class="ballot-participant-name">Brandon S.</div>
+          <div class="ballot-participant-pts">86 pts · 2nd place</div>
+        </div>
+      </div>
+      <div class="ballot-photos">
+        <div class="ballot-photo-item">
+          <img src="ballots/IMG_0648.jpg" class="ballot-photo-img" alt="Brandon S. ballot p.1"
+               onclick="openLightbox(this.src, 'Jun 11, 2026 · 11:13:46 AM PDT')">
+          <div class="ballot-timestamp">
+            <span class="ts-dot"></span>
+            <span><span class="ts-label">EXIF</span> &nbsp;Jun 11, 2026 · 11:13:46 AM PDT</span>
+          </div>
+        </div>
+        <div class="ballot-photo-item">
+          <img src="ballots/IMG_0649.jpg" class="ballot-photo-img" alt="Brandon S. ballot p.2"
+               onclick="openLightbox(this.src, 'Jun 11, 2026 · 11:13:49 AM PDT')">
+          <div class="ballot-timestamp">
+            <span class="ts-dot"></span>
+            <span><span class="ts-label">EXIF</span> &nbsp;Jun 11, 2026 · 11:13:49 AM PDT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ivy Tu — contending for 3rd -->
+    <div class="ballot-card">
+      <div class="ballot-card-header">
+        <div class="rank-num rank-other">5</div>
+        <div>
+          <div class="ballot-participant-name">Ivy Tu <span class="ballot-contender-note">Contending for 3rd</span></div>
+          <div class="ballot-participant-pts">76 pts · Can reach 3rd if ARG + ESP reach Final</div>
+        </div>
+      </div>
+      <div class="ballot-photos">
+        <div class="ballot-photo-item">
+          <img src="ballots/IMG_0610.jpg" class="ballot-photo-img" alt="Ivy Tu ballot p.1"
+               onclick="openLightbox(this.src, 'Jun 11, 2026 · 11:04:25 AM PDT')">
+          <div class="ballot-timestamp">
+            <span class="ts-dot"></span>
+            <span><span class="ts-label">EXIF</span> &nbsp;Jun 11, 2026 · 11:04:25 AM PDT</span>
+          </div>
+        </div>
+        <div class="ballot-photo-item">
+          <img src="ballots/IMG_0611.jpg" class="ballot-photo-img" alt="Ivy Tu ballot p.2"
+               onclick="openLightbox(this.src, 'Jun 11, 2026 · 11:04:29 AM PDT')">
+          <div class="ballot-timestamp">
+            <span class="ts-dot"></span>
+            <span><span class="ts-label">EXIF</span> &nbsp;Jun 11, 2026 · 11:04:29 AM PDT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
+
+<!-- LIGHTBOX -->
+<div class="ballot-lightbox" id="ballot-lightbox" onclick="closeLightbox()">
+  <span class="ballot-lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+  <div class="ballot-lightbox-ts" id="lightbox-ts"></div>
+</div>
 
 <!-- ADD PARTICIPANT MODAL -->
 <div class="modal-overlay" id="modal-overlay">
@@ -1206,11 +1445,23 @@ function saveParticipant() {
 
 function switchTab(name) {
   document.querySelectorAll('.tab').forEach((t, i) => {
-    t.classList.toggle('active', ['leaderboard','results'][i] === name);
+    t.classList.toggle('active', ['leaderboard','results','ballots'][i] === name);
   });
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
 }
+
+function openLightbox(src, ts) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-ts').textContent = '📷 ' + ts;
+  document.getElementById('ballot-lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('ballot-lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 function buildTeamRows(p) {
   return p.teams.map(code => {
