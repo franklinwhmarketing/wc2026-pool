@@ -586,19 +586,11 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    cursor: pointer;
-    user-select: none;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
   }
-  .ballot-card-header:hover .ballot-toggle { opacity: 1; }
   .ballot-card-header-text { flex: 1; min-width: 0; }
-  .ballot-toggle {
-    font-size: 18px;
-    color: var(--muted);
-    opacity: 0.55;
-    transition: transform 0.2s, opacity 0.15s;
-    flex-shrink: 0;
-  }
-  .ballot-card.expanded .ballot-toggle { transform: rotate(180deg); opacity: 1; }
   .ballot-participant-name {
     font-size: 17px;
     font-weight: 700;
@@ -624,14 +616,10 @@
     vertical-align: middle;
   }
   .ballot-photos {
-    display: none;
+    display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
   }
-  .ballot-card.expanded .ballot-photos { display: grid; }
   .ballot-photo-item {
     display: flex;
     flex-direction: column;
@@ -817,13 +805,13 @@
 
     <!-- 1st Place: Brandon S. 2 -->
     <div class="ballot-card expanded">
-      <div class="ballot-card-header" onclick="toggleBallot(this.parentElement)">
+      <div class="ballot-card-header">
         <div class="rank-num rank-1">🥇</div>
         <div class="ballot-card-header-text">
           <div class="ballot-participant-name">Brandon S. 2</div>
           <div class="ballot-participant-pts">88 pts · 1st place</div>
         </div>
-        <div class="ballot-toggle">⌄</div>
+
       </div>
       <div class="ballot-photos">
         <div class="ballot-photo-item">
@@ -847,13 +835,13 @@
 
     <!-- 2nd Place: Brandon S. -->
     <div class="ballot-card">
-      <div class="ballot-card-header" onclick="toggleBallot(this.parentElement)">
+      <div class="ballot-card-header">
         <div class="rank-num rank-2">🥈</div>
         <div class="ballot-card-header-text">
           <div class="ballot-participant-name">Brandon S.</div>
           <div class="ballot-participant-pts">86 pts · 2nd place</div>
         </div>
-        <div class="ballot-toggle">⌄</div>
+
       </div>
       <div class="ballot-photos">
         <div class="ballot-photo-item">
@@ -877,13 +865,13 @@
 
     <!-- 3rd Place: Ivy Tu -->
     <div class="ballot-card">
-      <div class="ballot-card-header" onclick="toggleBallot(this.parentElement)">
+      <div class="ballot-card-header">
         <div class="rank-num rank-3">🥉</div>
         <div class="ballot-card-header-text">
           <div class="ballot-participant-name">Ivy Tu</div>
           <div class="ballot-participant-pts">3rd place</div>
         </div>
-        <div class="ballot-toggle">⌄</div>
+
       </div>
       <div class="ballot-photos">
         <div class="ballot-photo-item">
@@ -1477,9 +1465,6 @@ function switchTab(name) {
   document.getElementById('panel-' + name).classList.add('active');
 }
 
-function toggleBallot(card) {
-  card.classList.toggle('expanded');
-}
 
 function openLightbox(src, ts) {
   document.getElementById('lightbox-img').src = src;
