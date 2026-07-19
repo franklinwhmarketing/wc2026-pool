@@ -574,11 +574,6 @@
     gap: 16px;
     align-items: flex-start;
   }
-  .ballots-tb-row {
-    display: flex;
-    gap: 16px;
-    margin-top: 16px;
-  }
   .tb-card {
     flex: 1;
     min-width: 0;
@@ -624,9 +619,6 @@
     border: 1px solid rgba(74,222,128,0.25);
     margin-left: 8px;
     vertical-align: middle;
-  }
-  @media (max-width: 700px) {
-    .ballots-tb-row { flex-direction: column; }
   }
   .ballot-card {
     flex: 1;
@@ -750,9 +742,9 @@
     border-radius: 20px;
     white-space: nowrap;
   }
-  @media (max-width: 700px) {
+  @media (max-width: 480px) {
     .ballots-grid { flex-direction: column; }
-    .ballot-card { padding: 14px; }
+    .ballot-card, .tb-card { padding: 14px; }
   }
 </style>
 </head>
@@ -947,10 +939,6 @@
       </div>
     </div>
 
-    </div><!-- /.ballots-grid -->
-
-    <div class="ballots-tb-row">
-
       <!-- Closest to Total Goals -->
       <div class="tb-card">
         <div class="tb-card-label">⚽ Closest to Total Goals</div>
@@ -991,7 +979,7 @@
         </div>
       </div>
 
-    </div><!-- /.ballots-tb-row -->
+    </div><!-- /.ballots-grid -->
   </div>
 
 </main>
