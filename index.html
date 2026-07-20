@@ -558,6 +558,61 @@
   }
 
   /* BALLOTS TAB */
+  /* Venmo payment section */
+  .venmo-section {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .venmo-qr {
+    width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
+  .venmo-text { flex: 1; min-width: 0; }
+  .venmo-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .venmo-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .venmo-handle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .venmo-btn {
+    display: inline-block;
+    background: #008CFF;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .venmo-btn:hover { opacity: 0.88; }
+  @media (max-width: 600px) {
+    .venmo-section { flex-direction: column; align-items: flex-start; }
+    .venmo-qr { width: 100%; height: auto; }
+  }
   .ballots-proof-banner {
     background: rgba(211,138,61,0.08);
     border: 1px solid var(--amber-border);
@@ -843,6 +898,17 @@
 
   <!-- BALLOTS -->
   <div id="panel-ballots" class="panel">
+    <!-- Venmo payment -->
+    <div class="venmo-section">
+      <img src="ballots/venmo-qr.png" class="venmo-qr" alt="Venmo QR code for @BrandonASanchez">
+      <div class="venmo-text">
+        <div class="venmo-label">💸 Pay your buy-in</div>
+        <div class="venmo-name">Brandon Sanchez</div>
+        <div class="venmo-handle">@BrandonASanchez</div>
+        <a href="https://venmo.com/u/BrandonASanchez" target="_blank" rel="noopener" class="venmo-btn">Pay on Venmo</a>
+      </div>
+    </div>
+
     <div class="ballots-proof-banner">
       All ballots photographed <strong>June 11, 2026</strong> — the day the tournament started — before any results were known. Timestamps shown are from the original EXIF metadata embedded in each photo. Tap any image to enlarge.
     </div>
