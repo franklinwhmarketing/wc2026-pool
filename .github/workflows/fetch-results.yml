@@ -1,20 +1,9 @@
 name: Fetch World Cup Results
 
 on:
-  schedule:
-    # Match windows run ~9 AM-7 PM PT during the tournament (Jun 11 - Jul 19).
-    # 10 syncs/day. Cron is UTC; labels are Pacific (PDT = UTC-7):
-    - cron: '0 14 * * *'   # 7 AM PT — morning catch-up
-    - cron: '0 16 * * *'   # 9 AM PT
-    - cron: '0 18 * * *'   # 11 AM PT
-    - cron: '0 19 * * *'   # 12 PM PT
-    - cron: '0 20 * * *'   # 1 PM PT
-    - cron: '0 21 * * *'   # 2 PM PT
-    - cron: '0 22 * * *'   # 3 PM PT
-    - cron: '0 0 * * *'    # 5 PM PT
-    - cron: '0 2 * * *'    # 7 PM PT
-    - cron: '0 4 * * *'    # 9 PM PT — end-of-day sweep
-  workflow_dispatch:        # manual trigger from GitHub UI
+  # Tournament ended 2026-07-19. Schedule disabled — data is final.
+  # Re-enable by restoring the schedule block if needed.
+  workflow_dispatch:        # manual trigger from GitHub UI only
 
 jobs:
   fetch:
